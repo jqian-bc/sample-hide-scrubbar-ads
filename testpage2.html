@@ -1,0 +1,43 @@
+<head>
+    <style>
+        .hider {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="max-width: 960px;">
+        <video-js id="myPlayer" data-account="6143758058001" data-player="fBgUwEkbt" data-embed="default" controls=""
+            data-video-id="6150974108001" data-playlist-id="" data-application-id="" class="vjs-fluid"></video-js>
+    </div>
+    <script src="https://players.brightcove.net/6143758058001/fBgUwEkbt_default/index.min.js"></script>
+
+    <script>
+        var myPlayer;
+
+        // Get the PLAYER and be sure the PLAYER is ready to interact with
+        videojs.getPlayer("myPlayer").ready(function () {
+            //  Get a reference to the PLAYER
+            myPlayer = this;
+
+            myPlayer.on('ima3-started', function () {
+                console.log("start");
+                document.getElementById("myPlayer").getElementsByClassName("vjs-ad-control-bar")[0].classList.add("hider");
+                document.getElementById("myPlayer").getElementsByClassName("vjs-control-bar")[0].classList.add("hider");
+            });
+
+            myPlayer.on("ima3-complete", function () {
+                console.log("end");
+                document.getElementById("myPlayer").getElementsByClassName("vjs-ad-control-bar")[0].classList.remove("hider");
+                document.getElementById("myPlayer").getElementsByClassName("vjs-control-bar")[0].classList.remove("hider");
+            });
+
+            myPlayer.on("ima3-skipped", function () {
+                console.log("end");
+                document.getElementById("myPlayer").getElementsByClassName("vjs-ad-control-bar")[0].classList.remove("hider");
+                document.getElementById("myPlayer").getElementsByClassName("vjs-control-bar")[0].classList.remove("hider");
+            });
+        });
+    </script>
+</body>
